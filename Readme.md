@@ -50,9 +50,9 @@ https://vtn-team.github.io/adventure-cube/EducationText/テクニック/01-ス�
 
 
 ## 課題をどこまでやれましたか？
-例) Tryまでやった
-例) Mustだけやった
-例) わからなかった
+例) Tryまでやった  
+例) Mustだけやった  
+例) わからなかった  
 
 回答：
 
