@@ -1,4 +1,4 @@
-## 課題
+# 課題
 
 お題の元プロジェクト  
 https://github.com/vtn-team/MasterData.git
@@ -6,8 +6,9 @@ https://github.com/vtn-team/MasterData.git
 ↑のプロジェクトをcloneしてきた後、以下の課題をやってみましょう。  
 
 (Must)
-- データ構造の違いと、なぜそうしているかを考えて、MasterDataのReadme.mdに記載しよう。
-- ScriptableObjectのデータを作って、そのデータをCardViewに表示してみよう
+- データ構造の違いと、なぜそうしているかを考えて、MasterDataのReadme.mdに記載しよう。  
+- ScriptableObjectのデータを作って、そのデータをCardViewに表示してみよう  
+
 ※リストビューで選択できなくても構いません。データを表示するだけでよいです。  
 
 (Try)
@@ -32,10 +33,10 @@ https://github.com/vtn-team/MasterData.git
 
 
 # 説明資料/参考文献
-https://vtn-team.github.io/adventure-cube/EducationText/データ設計/01-マスターデータとExcel.html
-https://vtn-team.github.io/adventure-cube/EducationText/データ設計/02-ScriptableObject.html
-https://vtn-team.github.io/adventure-cube/EducationText/データ設計/03-リレーション.html
-https://vtn-team.github.io/adventure-cube/EducationText/テクニック/01-スプレッドシートをJsonで受け取る.html
+https://vtn-team.github.io/adventure-cube/EducationText/データ設計/01-マスターデータとExcel.html  
+https://vtn-team.github.io/adventure-cube/EducationText/データ設計/02-ScriptableObject.html  
+https://vtn-team.github.io/adventure-cube/EducationText/データ設計/03-リレーション.html  
+https://vtn-team.github.io/adventure-cube/EducationText/テクニック/01-スプレッドシートをJsonで受け取る.html  
 
 # 回答補足
 ## (Must)データ構造の違いについて
