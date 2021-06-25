@@ -1,10 +1,5 @@
 # 課題
 
-お題の元プロジェクト  
-https://github.com/vtn-team/MasterData.git
-
-↑のプロジェクトをcloneしてきた後、以下の課題をやってみましょう。  
-
 (Must)
 - データ構造の違いと、なぜそうしているかを考えて、MasterDataのReadme.mdに記載しよう。  
 - ScriptableObjectのデータを作って、そのデータをCardViewに表示してみよう  
