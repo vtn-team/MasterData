@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool IsVersionUpFlag = false;
     [SerializeField] GameObject CardListRoot = null;
     [SerializeField] CardView CardView = null;
+    [SerializeField] CardData[] CardDatas = null;
 
     //ゲーム中のマスターデータ
     MasterData.MasterDataClass<MasterData.Card> cardMaster;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     static GameManager instance = null;
     static public GameManager Instance => instance;
 
+
     private void Awake()
     {
         instance = this;
@@ -41,20 +43,40 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //マスタデータの読み込みが終わったらセットアップする
-        if(LoadingCount == 0 && IsInit == 0)
+        //if(LoadingCount == 0 && IsInit == 0)
+        //{
+        //    var prefab = Resources.Load<GameObject>("Button");
+        //    foreach (var card in cardMaster.Data)
+        //    {
+        //        {
+        //            int id = card.Id;
+        //            GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
+        //            Button script = btn.GetComponent<Button>();
+        //            TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
+        //            text.text = card.Name;
+        //            script.onClick.AddListener(() =>
+        //            {
+        //                CardView.ViewData(id);
+        //            });
+        //        }
+        //    }
+
+        //    IsInit = 1;
+        //}
+        if (LoadingCount == 0 && IsInit == 0)
         {
             var prefab = Resources.Load<GameObject>("Button");
-            foreach (var card in cardMaster.Data)
+            foreach (var card in CardDatas)
             {
                 {
-                    int id = card.Id;
+                    int id = card.ID;
                     GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
                     Button script = btn.GetComponent<Button>();
                     TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
-                    text.text = card.Name;
+                    text.text = card.CName;
                     script.onClick.AddListener(() =>
                     {
-                        CardView.ViewData(id);
+                        CardView.ViewData(card);
                     });
                 }
             }

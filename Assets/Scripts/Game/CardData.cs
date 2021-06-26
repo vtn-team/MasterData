@@ -19,8 +19,12 @@ public class CardData : ScriptableObject
     [SerializeField] int Power;
     [SerializeField] int Toughness;
     [SerializeField] List<EffectData> Effect;
-
-
+    public int ID { get => Id; }
+    public string CName { get => Name; }
+    public int CCost { get => Cost; }
+    public int CPower { get => Power; }
+    public int CToughness { get => Toughness; }
+    public List<EffectData> CEffect { get => Effect; }
 
 #if UNITY_EDITOR
     public void SetData(int cost, int power, int toughness)

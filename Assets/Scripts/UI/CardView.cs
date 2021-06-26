@@ -52,4 +52,37 @@ public class CardView : MonoBehaviour
             }
         }
     }
+    public void ViewData(CardData card)
+    {
+        _cost.text = card.CCost.ToString();
+        if (card.CToughness == -1)
+        {
+            _toughness.text = "";
+        }
+        else
+        {
+            _toughness.text = card.CToughness.ToString();
+        }
+        if (card.CPower == -1)
+        {
+            _power.text = "";
+        }
+        else
+        {
+            _power.text = card.CPower.ToString();
+        }
+        _name.text = card.CName.ToString();
+        _text.text = "";
+        if (card.CEffect.Count == 0)
+        {
+            _text.text = "Œø‰Ê‚È‚µ";
+        }
+        else
+        {
+            foreach (var effect in card.CEffect)
+            {
+                _text.text += effect.Text;
+            }
+        }
+    }
 }
