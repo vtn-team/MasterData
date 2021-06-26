@@ -18,7 +18,5 @@ MonoBehaviour:
   power: 12
   toughness: 312
   effect:
-  - Id: 1
-    Text: sadfasd
-  - Id: 1
-    Text: sadfasewf
+  - Text: "\u3053\u3093\u306B\u3061\u306F"
+  - Text: sadfasewf

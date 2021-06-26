@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1703edc9d073d7948a4ad831ca914b09, type: 3}
   m_Name: CardData3
   m_EditorClassIdentifier: 
-  id: 2
-  name: 12sdaf
-  cost: 123
-  power: 12
-  toughness: 312
+  id: 3
+  name: sdfasdfaew
+  cost: 55555
+  power: 555
+  toughness: 55
   effect:
-  - Text: sadfasd
-  - Text: sadfasewf
+  - Text: jglanskdfa
+  - Text: iiiiiiiiiiiiiiiiiiiii
