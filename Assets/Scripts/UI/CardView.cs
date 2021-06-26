@@ -11,7 +11,27 @@ public class CardView : MonoBehaviour
     [SerializeField] TMPro.TMP_Text _cost;
     [SerializeField] TMPro.TMP_Text _power;
     [SerializeField] TMPro.TMP_Text _toughness;
-
+    private void Start()
+    {
+        var card = GameManager.Instance.cardData;
+        _name.text = card.GetName.ToString();
+        _cost.text = card.GetCost.ToString();
+        _power.text = card.GetPower.ToString();
+        _toughness.text = card.GetTougheness.ToString();
+        _text.text = "";
+        var EffectList = GameManager.EffectMaster.Where(ef => ef.CardId == card.GetId).Select(ef => ef.Text);
+        if (EffectList.Count() == 0)
+        {
+            _text.text = "Œø‰Ê‚È‚µ";
+        }
+        else
+        {
+            foreach (var effect in EffectList)
+            {
+                _text.text += effect;
+            }
+        }
+    }
     public void ViewData(int id)
     {
         var card = GameManager.CardMaster.Single(c => c.Id == id);

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     //ゲーム中のマスターデータ
     MasterData.MasterDataClass<MasterData.Card> cardMaster;
     MasterData.MasterDataClass<MasterData.Effect> effectMaster;
+    [SerializeField] public CardData cardData;
     static public MasterData.Card[] CardMaster => Instance.cardMaster.Data;
     static public MasterData.Effect[] EffectMaster => Instance.effectMaster.Data;
 
