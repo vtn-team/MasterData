@@ -51,8 +51,8 @@ https://vtn-team.github.io/adventure-cube/EducationText/テクニック/01-ス�
 例) わからなかった  
 
 回答：
-Mustだけやった
+Tryまでやった
 
 ## 質問内容があれば記述してください
 回答：
-何がわからないのかわからないので無いです
+正しい方向性でScriptableObjectを作れたのかがわからない

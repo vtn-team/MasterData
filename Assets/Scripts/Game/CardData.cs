@@ -20,6 +20,10 @@ public class CardData : ScriptableObject
     [SerializeField] int Toughness;
     [SerializeField] List<EffectData> Effect;
 
+    public List<EffectData> GetEffect()
+    {
+        return Effect;
+    }
     public int GetId => Id;
     public string GetName => Name;
     public int GetCost => Cost;

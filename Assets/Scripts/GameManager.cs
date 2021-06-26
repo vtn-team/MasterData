@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     //ゲーム中のマスターデータ
     MasterData.MasterDataClass<MasterData.Card> cardMaster;
     MasterData.MasterDataClass<MasterData.Effect> effectMaster;
-    [SerializeField] public CardData cardData;
+    [SerializeField] public CardData[] cardDatas;
     static public MasterData.Card[] CardMaster => Instance.cardMaster.Data;
     static public MasterData.Effect[] EffectMaster => Instance.effectMaster.Data;
 
@@ -42,26 +42,47 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //マスタデータの読み込みが終わったらセットアップする
-        if(LoadingCount == 0 && IsInit == 0)
+        //if(LoadingCount == 0 && IsInit == 0)
+        //{
+        //    var prefab = Resources.Load<GameObject>("Button");
+        //    foreach (var card in cardMaster.Data)
+        //    {
+        //        {
+        //            int id = card.Id;
+        //            GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
+        //            Button script = btn.GetComponent<Button>();
+        //            TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
+        //            text.text = card.Name;
+        //            script.onClick.AddListener(() =>
+        //            {
+        //                CardView.ViewData(id);
+        //            });
+        //        }
+        //    }
+
+        //    IsInit = 1;
+        //}
+        if (IsInit == 0)
         {
-            var prefab = Resources.Load<GameObject>("Button");
-            foreach (var card in cardMaster.Data)
+            var prefab1 = Resources.Load<GameObject>("Button1");
+            foreach (var card in cardDatas)
             {
                 {
-                    int id = card.Id;
-                    GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
+                    int id = card.GetId;
+                    GameObject btn = GameObject.Instantiate(prefab1, CardListRoot.transform);
                     Button script = btn.GetComponent<Button>();
                     TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
-                    text.text = card.Name;
+                    text.text = card.GetName;
                     script.onClick.AddListener(() =>
                     {
-                        CardView.ViewData(id);
+                        CardView.ViewCardData(id);
                     });
                 }
             }
-
-            IsInit = 1;
         }
+        
+        IsInit = 1;
+
     }
 
     //マスタデータ読み込み関数
