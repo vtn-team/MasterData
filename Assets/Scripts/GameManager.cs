@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject CardListRoot = null;
     [SerializeField] CardView CardView = null;
 
+    [SerializeField] CardData[] CardData = null;
+
     //ゲーム中のマスターデータ
     MasterData.MasterDataClass<MasterData.Card> cardMaster;
     MasterData.MasterDataClass<MasterData.Effect> effectMaster;
@@ -38,32 +40,49 @@ public class GameManager : MonoBehaviour
         LoadMasterData("Effect", (MasterData.MasterDataClass<MasterData.Effect> data) => effectMaster = data);
     }
 
-    private void Update()
+    private void Start()
     {
-        //マスタデータの読み込みが終わったらセットアップする
-        if(LoadingCount == 0 && IsInit == 0)
+        //ScriptableObject
+        foreach (var card in CardData)
         {
             var prefab = Resources.Load<GameObject>("Button");
-            foreach (var card in cardMaster.Data)
+            GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
+            Button script = btn.GetComponent<Button>();
+            TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
+            text.text = card.GetName();
+            script.onClick.AddListener(() =>
             {
-                {
-                    int id = card.Id;
-                    GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
-                    Button script = btn.GetComponent<Button>();
-                    TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
-                    text.text = card.Name;
-                    script.onClick.AddListener(() =>
-                    {
-                        CardView.ViewData(id);
-                    });
-                }
-            }
-
-            IsInit = 1;
+                CardView.ViewData(card);
+            });
         }
     }
 
-    //マスタデータ読み込み関数
+    //private void Update()
+    //{
+    //    //マスタデータの読み込みが終わったらセットアップする
+    //    if (LoadingCount == 0 && IsInit == 0)
+    //    {
+    //        var prefab = Resources.Load<GameObject>("Button");
+    //        foreach (var card in cardMaster.Data)
+    //        {
+    //            {
+    //                int id = card.Id;
+    //                GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
+    //                Button script = btn.GetComponent<Button>();
+    //                TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
+    //                text.text = card.Name;
+    //                script.onClick.AddListener(() =>
+    //                {
+    //                    CardView.ViewData(id);
+    //                });
+    //            }
+    //        }
+
+    //        IsInit = 1;
+    //    }
+    //}
+
+        //マスタデータ読み込み関数
     private void LoadMasterData<T>(string file, LoadMasterDataCallback<T> callback)
     {
         var data = LocalData.Load<T>(file);
