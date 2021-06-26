@@ -13,12 +13,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool IsVersionUpFlag = false;
     [SerializeField] GameObject CardListRoot = null;
     [SerializeField] CardView CardView = null;
+    //[SerializeField] CardData _cardData = null;
 
     //ゲーム中のマスターデータ
     MasterData.MasterDataClass<MasterData.Card> cardMaster;
     MasterData.MasterDataClass<MasterData.Effect> effectMaster;
+
+    //MasterData.MasterDataClass<CardData.EffectData> cardData;
+
     static public MasterData.Card[] CardMaster => Instance.cardMaster.Data;
     static public MasterData.Effect[] EffectMaster => Instance.effectMaster.Data;
+
+    //static public CardData.EffectData[] CardEffect => Instance.cardData.Data;
 
     delegate void LoadMasterDataCallback<T>(T data);
 
@@ -36,28 +42,41 @@ public class GameManager : MonoBehaviour
         //マスタデータ読み込み
         LoadMasterData("Card", (MasterData.MasterDataClass<MasterData.Card> data) => cardMaster = data);
         LoadMasterData("Effect", (MasterData.MasterDataClass<MasterData.Effect> data) => effectMaster = data);
+
+        //LoadMasterData("Effect", (MasterData.MasterDataClass<CardData.EffectData> data) => cardData = data);
     }
 
     private void Update()
     {
         //マスタデータの読み込みが終わったらセットアップする
-        if(LoadingCount == 0 && IsInit == 0)
+        if (LoadingCount == 0 && IsInit == 0)
         {
             var prefab = Resources.Load<GameObject>("Button");
             foreach (var card in cardMaster.Data)
             {
+                int id = card.Id;
+                GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
+                Button script = btn.GetComponent<Button>();
+                TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
+                text.text = card.Name;
+                script.onClick.AddListener(() =>
                 {
-                    int id = card.Id;
-                    GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
-                    Button script = btn.GetComponent<Button>();
-                    TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
-                    text.text = card.Name;
-                    script.onClick.AddListener(() =>
-                    {
-                        CardView.ViewData(id);
-                    });
-                }
+                    CardView.ViewData(id);
+                });
             }
+
+            //foreach (var card in cardData.Data)
+            //{
+            //    int id = card.Id;
+            //    GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
+            //    Button script = btn.GetComponent<Button>();
+            //    TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
+            //    text.text = card.Text;
+            //    script.onClick.AddListener(() =>
+            //    {
+            //        CardView.ViewData(id);
+            //    });
+            //}
 
             IsInit = 1;
         }
@@ -67,7 +86,7 @@ public class GameManager : MonoBehaviour
     private void LoadMasterData<T>(string file, LoadMasterDataCallback<T> callback)
     {
         var data = LocalData.Load<T>(file);
-        if(data == null || IsVersionUpFlag)
+        if (data == null || IsVersionUpFlag)
         {
             LoadingCount++;
             Network.WebRequest.Request<Network.WebRequest.GetString>("https://script.google.com/macros/s/AKfycbwGRi22gwxUvdSzIpofH9xPiWStwiOafoGR8D_IJ_w8RmnPCq3nv7kZ4icBLKgfLLKc/exec?sheet=" + file, Network.WebRequest.ResultType.String, (string json) =>
