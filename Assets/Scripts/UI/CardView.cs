@@ -52,4 +52,35 @@ public class CardView : MonoBehaviour
             }
         }
     }
+    public void ViewData(string name, int cost, int power, int toughness, List<CardData.EffectData> effects)
+    {
+
+        _cost.text = cost.ToString();
+
+        if (power == -1)
+        {
+            _power.text = "";
+        }
+        else
+        {
+            _power.text = power.ToString();
+        }
+
+        if (toughness == -1)
+        {
+            _toughness.text = "";
+        }
+        else
+        {
+            _toughness.text = toughness.ToString();
+        }
+
+        _name.text = name.ToString();
+
+        foreach (var effect in effects)
+        {
+            _text.text += effect.Text;
+        }
+
+    }
 }

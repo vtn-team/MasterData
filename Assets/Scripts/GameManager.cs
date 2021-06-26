@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     static GameManager instance = null;
     static public GameManager Instance => instance;
 
+    [SerializeField] CardDataBase cardDataBase;
+
     private void Awake()
     {
         instance = this;
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //マスタデータの読み込みが終わったらセットアップする
-        if(LoadingCount == 0 && IsInit == 0)
+        if (LoadingCount == 0 && IsInit == 0)
         {
             var prefab = Resources.Load<GameObject>("Button");
             foreach (var card in cardMaster.Data)
@@ -59,6 +61,22 @@ public class GameManager : MonoBehaviour
                 }
             }
 
+            foreach (var card in cardDataBase.dataArray)
+            {
+                int idAddCard = card.Id;
+                GameObject btnAddCard = GameObject.Instantiate(prefab, CardListRoot.transform);
+                Button scriptAddCard = btnAddCard.GetComponent<Button>();
+                TMPro.TMP_Text textAddCard = btnAddCard.GetComponentInChildren<TMPro.TMP_Text>();
+                textAddCard.text = card.Name;
+                scriptAddCard.onClick.AddListener(() =>
+                {
+                    //変更点
+                    CardView.ViewData(card.Name,card.Cost,card.Power,card.Toughness, card.Effect);
+                });
+            }
+
+
+
             IsInit = 1;
         }
     }
@@ -67,7 +85,7 @@ public class GameManager : MonoBehaviour
     private void LoadMasterData<T>(string file, LoadMasterDataCallback<T> callback)
     {
         var data = LocalData.Load<T>(file);
-        if(data == null || IsVersionUpFlag)
+        if (data == null || IsVersionUpFlag)
         {
             LoadingCount++;
             Network.WebRequest.Request<Network.WebRequest.GetString>("https://script.google.com/macros/s/AKfycbwGRi22gwxUvdSzIpofH9xPiWStwiOafoGR8D_IJ_w8RmnPCq3nv7kZ4icBLKgfLLKc/exec?sheet=" + file, Network.WebRequest.ResultType.String, (string json) =>
