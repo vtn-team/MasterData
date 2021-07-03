@@ -14,11 +14,17 @@ public class CardData : ScriptableObject
     }
 
     [SerializeField] int Id;
+    public int GetId { get => Id; }
     [SerializeField] string Name;
+    public string GetName { get => Name; }
     [SerializeField] int Cost;
+    public int GetCost { get => Cost; }
     [SerializeField] int Power;
+    public int GetPower { get => Power; }
     [SerializeField] int Toughness;
+    public int GetToughness { get => Toughness; }
     [SerializeField] List<EffectData> Effect;
+    public List<EffectData> GetEffect { get => Effect; }
 
 
 

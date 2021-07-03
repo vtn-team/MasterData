@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     int LoadingCount = 0;
     int IsInit = 0;
 
+    public CardData[] cardDate;
+
     //とりあえずのシングルトン化
     static GameManager instance = null;
     static public GameManager Instance => instance;
@@ -34,8 +36,8 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         //マスタデータ読み込み
-        LoadMasterData("Card", (MasterData.MasterDataClass<MasterData.Card> data) => cardMaster = data);
-        LoadMasterData("Effect", (MasterData.MasterDataClass<MasterData.Effect> data) => effectMaster = data);
+        //LoadMasterData("Card", (MasterData.MasterDataClass<MasterData.Card> data) => cardMaster = data);
+        //LoadMasterData("Effect", (MasterData.MasterDataClass<MasterData.Effect> data) => effectMaster = data);
     }
 
     private void Update()
@@ -44,14 +46,14 @@ public class GameManager : MonoBehaviour
         if(LoadingCount == 0 && IsInit == 0)
         {
             var prefab = Resources.Load<GameObject>("Button");
-            foreach (var card in cardMaster.Data)
+            foreach (var card in cardDate)
             {
                 {
-                    int id = card.Id;
+                    int id = card.GetId;
                     GameObject btn = GameObject.Instantiate(prefab, CardListRoot.transform);
                     Button script = btn.GetComponent<Button>();
                     TMPro.TMP_Text text = btn.GetComponentInChildren<TMPro.TMP_Text>();
-                    text.text = card.Name;
+                    text.text = card.GetName;
                     script.onClick.AddListener(() =>
                     {
                         CardView.ViewData(id);
