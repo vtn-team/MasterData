@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CardData1
   m_EditorClassIdentifier: 
   Id: 1
-  Name: "\u8EDF\u4F53\u96FB\u6975\u7363"
+  Name: " \u8EDF\u4F53\u96FB\u6975\u7363<style=p8>\u30B8\u30A7\u30EC\u30AF\u30C8\u30ED\u30FC\u30C9</style>"
   Cost: 3
   Power: 0
   Toughness: 1

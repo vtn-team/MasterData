@@ -749,6 +749,11 @@ MonoBehaviour:
   _cost: {fileID: 1876747608}
   _power: {fileID: 1564766726}
   _toughness: {fileID: 1750524885}
+  cardData:
+  - {fileID: 11400000, guid: 26a6d8acc1253c444b529e8d6df40259, type: 2}
+  - {fileID: 11400000, guid: 90673508f19f2f34d8f50316fcc031fc, type: 2}
+  - {fileID: 11400000, guid: b1c93931c22f33a4bb92729e9ea7e15d, type: 2}
+  - {fileID: 11400000, guid: 843b9c982d67f154bac05364620cee01, type: 2}
 --- !u!1 &274915602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2107,11 @@ MonoBehaviour:
   IsVersionUpFlag: 0
   CardListRoot: {fileID: 274915602}
   CardView: {fileID: 267548032}
+  cardData:
+  - {fileID: 11400000, guid: 26a6d8acc1253c444b529e8d6df40259, type: 2}
+  - {fileID: 11400000, guid: 90673508f19f2f34d8f50316fcc031fc, type: 2}
+  - {fileID: 11400000, guid: b1c93931c22f33a4bb92729e9ea7e15d, type: 2}
+  - {fileID: 11400000, guid: 843b9c982d67f154bac05364620cee01, type: 2}
 --- !u!4 &1860275703
 Transform:
   m_ObjectHideFlags: 0
