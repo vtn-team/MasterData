@@ -86,7 +86,7 @@ public class CardView : MonoBehaviour
 
         //Linqを使って、関係あるカード効果を検索してくる
         _text.text = "";
-        var EffectList = cardData.Where(ef => ef.GetID == id).Select(ef => ef.GetEffect);
+        var EffectList = card.GetEffect;
         if (EffectList.Count() == 0)
         {
             _text.text = "効果なし";
@@ -95,7 +95,7 @@ public class CardView : MonoBehaviour
         {
             foreach (var effect in EffectList)
             {
-                _text.text += effect[0].Text;
+                _text.text += effect.Text;
             }
         }
     }
