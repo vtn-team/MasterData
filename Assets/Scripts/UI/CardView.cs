@@ -52,4 +52,44 @@ public class CardView : MonoBehaviour
             }
         }
     }
+
+    public void ViewLocalData(CardData data)
+    {
+        _cost.text = data.GetCost.ToString();
+
+        if (data.GetPower == -1)
+        {
+            _power.text = "";
+        }
+        else
+        {
+            _power.text = data.GetPower.ToString();
+        }
+
+        if (data.GetToughness == -1)
+        {
+            _toughness.text = "";
+        }
+        else
+        {
+            _toughness.text = data.GetToughness.ToString();
+        }
+
+        _name.text = data.GetName.ToString();
+
+        //Linqを使って、関係あるカード効果を検索してくる
+        _text.text = "";
+        //var EffectList = GameManager.EffectMaster.Where(ef => ef.CardId == id).Select(ef => ef.Text);
+        if (data.GetEffect.Count() == 0)
+        {
+            _text.text = "効果なし";
+        }
+        else
+        {
+            foreach (var effect in data.GetEffect)
+            {
+                _text.text += effect.Text;
+            }
+        }
+    }
 }
