@@ -14,7 +14,7 @@ public class CardView : MonoBehaviour
 
     public void ViewData(int id)
     {
-        var card = GameManager.CardMaster.Single(c => c.Id == id);
+        var card = GameManager.CardList.Search(id);
         _cost.text = card.Cost.ToString();
 
         if (card.Power == -1)
@@ -37,8 +37,21 @@ public class CardView : MonoBehaviour
 
         _name.text = card.Name.ToString();
 
-        //Linqを使って、関係あるカード効果を検索してくる
         _text.text = "";
+
+        if (card.Effect.Count() == 0)
+        {
+            _text.text = "効果なし";
+        }
+        else
+        {
+            foreach (var effect in card.Effect)
+            {
+                _text.text += effect.Text;
+            }
+        }
+        /*
+        //Linqを使って、関係あるカード効果を検索してくる
         var EffectList = GameManager.EffectMaster.Where(ef => ef.CardId == id).Select(ef => ef.Text);
         if (EffectList.Count() == 0)
         {
@@ -51,5 +64,6 @@ public class CardView : MonoBehaviour
                 _text.text += effect;
             }
         }
+        */
     }
 }

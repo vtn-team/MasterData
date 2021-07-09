@@ -11,14 +11,16 @@ public class GameManager : MonoBehaviour
 {
     //ゲーム中のオブジェクトデータ
     [SerializeField] bool IsVersionUpFlag = false;
+    [SerializeField] CardList CardListData = null;
     [SerializeField] GameObject CardListRoot = null;
     [SerializeField] CardView CardView = null;
 
     //ゲーム中のマスターデータ
-    MasterData.MasterDataClass<MasterData.Card> cardMaster;
-    MasterData.MasterDataClass<MasterData.Effect> effectMaster;
-    static public MasterData.Card[] CardMaster => Instance.cardMaster.Data;
-    static public MasterData.Effect[] EffectMaster => Instance.effectMaster.Data;
+    static public CardList CardList => instance.CardListData;
+    //MasterData.MasterDataClass<MasterData.Card> cardMaster;
+    //MasterData.MasterDataClass<MasterData.Effect> effectMaster;
+    //static public MasterData.Card[] CardMaster => Instance.cardMaster.Data;
+    //static public MasterData.Effect[] EffectMaster => Instance.effectMaster.Data;
 
     delegate void LoadMasterDataCallback<T>(T data);
 
@@ -34,8 +36,8 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         //マスタデータ読み込み
-        LoadMasterData("Card", (MasterData.MasterDataClass<MasterData.Card> data) => cardMaster = data);
-        LoadMasterData("Effect", (MasterData.MasterDataClass<MasterData.Effect> data) => effectMaster = data);
+        //LoadMasterData("Card", (MasterData.MasterDataClass<MasterData.Card> data) => cardMaster = data);
+        //LoadMasterData("Effect", (MasterData.MasterDataClass<MasterData.Effect> data) => effectMaster = data);
     }
 
     private void Update()
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
         if(LoadingCount == 0 && IsInit == 0)
         {
             var prefab = Resources.Load<GameObject>("Button");
-            foreach (var card in cardMaster.Data)
+            foreach (var card in CardListData.List)
             {
                 {
                     int id = card.Id;

@@ -13,21 +13,24 @@ public class CardData : ScriptableObject
         public string Text;
     }
 
-    [SerializeField] int Id;
-    [SerializeField] string Name;
-    [SerializeField] int Cost;
-    [SerializeField] int Power;
-    [SerializeField] int Toughness;
-    [SerializeField] List<EffectData> Effect;
+    [SerializeField] int _id;
+    [SerializeField] string _name;
+    [SerializeField] int _cost;
+    [SerializeField] int _power;
+    [SerializeField] int _toughness;
+    [SerializeField] List<EffectData> _effect;
 
-
+    public int Id => _id;
+    public string Name => _name;
+    public int Cost => _cost;
+    public int Power => _power;
+    public int Toughness => _toughness;
+    public List<EffectData> Effect => _effect;
 
 #if UNITY_EDITOR
-    public void SetData(int cost, int power, int toughness)
+    public void SetId(int id)
     {
-        Cost = cost;
-        Power = power;
-        Toughness = toughness;
+        _id = id;
     }
 #endif
 }
