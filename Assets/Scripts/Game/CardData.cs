@@ -15,10 +15,10 @@ public class CardData : ScriptableObject
 
     [SerializeField] int Id;
     [SerializeField] string Name;
-    [SerializeField] int Cost;
-    [SerializeField] int Power;
-    [SerializeField] int Toughness;
-    [SerializeField] List<EffectData> Effect;
+    [SerializeField] public int Cost;
+    [SerializeField] public int Power;
+    [SerializeField] public int Toughness;
+    [SerializeField] public List<EffectData> Effect;
 
 
 

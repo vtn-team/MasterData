@@ -51,5 +51,43 @@ public class CardView : MonoBehaviour
                 _text.text += effect;
             }
         }
+    }public void ViewData(string name, int cost, int power, int toughness,List<CardData.EffectData> effects)
+    {
+        //var card = GameManager.CardMaster.Single(c => c.Id == id);
+        _cost.text = cost.ToString();
+
+        if (power == -1)
+        {
+            _power.text = "";
+        }
+        else
+        {
+            _power.text = power.ToString();
+        }
+
+        if (toughness == -1)
+        {
+            _toughness.text = "";
+        }
+        else
+        {
+            _toughness.text = toughness.ToString();
+        }
+
+        _name.text = name.ToString();
+
+        //Linqを使って、関係あるカード効果を検索してくる
+        _text.text = "";
+        if (effects.Count() == 0)
+        {
+            _text.text = "効果なし";
+        }
+        else
+        {
+            foreach (var effect in effects)
+            {
+                _text.text += effect;
+            }
+        }
     }
 }

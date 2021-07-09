@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
 
     delegate void LoadMasterDataCallback<T>(T data);
 
+
+    [SerializeField] MasterData.MasterDataClass<CardData> masterData;
+    [SerializeField] CardData cardData;
+    bool boolean = false;
+
     int LoadingCount = 0;
     int IsInit = 0;
 
@@ -60,6 +65,11 @@ public class GameManager : MonoBehaviour
             }
 
             IsInit = 1;
+        }
+
+        if (boolean == false)
+        {
+            CardView.ViewData(cardData.name, cardData.Cost, cardData.Power, cardData.Toughness, cardData.Effect);
         }
     }
 
